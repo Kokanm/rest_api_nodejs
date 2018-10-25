@@ -1,0 +1,11 @@
+{
+  "db": {
+    "MONGO_ATLAS_USER": "kokan",
+    "MONGO_ATLAS_PW": "1q2w3e4r5t",
+    "MONGO_ATLAS_URL": "node-rest-shop-ixirx.mongodb.net",
+    "MONGO_ATLAS_DB_NAME": "test"
+  },
+  "auth": {
+    "JWT_KEY": "secret"
+  }
+}
