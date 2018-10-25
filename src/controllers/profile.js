@@ -9,14 +9,16 @@ module.exports = {
         try {
             res.status(200).json(
                 responses.success('Profile information', {
-                    _id: req.user._id,
-                    username: req.user.username,
-                    likes: req.user.likes.map(like => {
-                        return {
-                            _id: like._id,
-                            username: like.username,
-                        };
-                    }),
+                    user: {
+                        _id: req.user._id,
+                        username: req.user.username,
+                        likes: req.user.likes.map(like => {
+                            return {
+                                _id: like._id,
+                                username: like.username,
+                            };
+                        }),
+                    },
                 })
             );
         } catch (err) {

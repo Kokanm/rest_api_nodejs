@@ -10,15 +10,17 @@ module.exports = {
             if (user) {
                 res.status(200).json(
                     responses.success('User information', {
-                        _id: user._id,
-                        username: user.username,
-                        likeCount: user.likes.length,
-                        likes: user.likes.map(like => {
-                            return {
-                                _id: like._id,
-                                username: like.username,
-                            };
-                        }),
+                        user: {
+                            _id: user._id,
+                            username: user.username,
+                            likeCount: user.likes.length,
+                            likes: user.likes.map(like => {
+                                return {
+                                    _id: like._id,
+                                    username: like.username,
+                                };
+                            }),
+                        },
                     })
                 );
             } else {

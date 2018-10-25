@@ -8,7 +8,7 @@ const UserController = require('../controllers/user');
 /**
  * Description - Returns information about a user.
  * Request - id: string
- * Response - _id: string, username: string, likeCount: number, likes: Array<{_id: string, username: string}>
+ * Response - message: string, user: {_id: string, username: string, likeCount: number, likes: Array<{_id: string, username: string}>}
  */
 router.get('/user/:id', asyncErrorHandler(UserController.userLook));
 
@@ -31,7 +31,7 @@ router.put('/user/:id/unlike', checkAuth, asyncErrorHandler(UserController.userU
 /**
  * Description - Returns all users ordered from most liked to least liked.
  * Request - id: string
- * Response - mostLikedUsers: Array<{_id: string, username: string, likeCount: number}>
+ * Response - message: string, mostLikedUsers: Array<{_id: string, username: string, likeCount: number}>
  */
 router.get('/most-liked', asyncErrorHandler(UserController.mostLikedUsers));
 

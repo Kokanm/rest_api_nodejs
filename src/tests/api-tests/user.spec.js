@@ -36,10 +36,11 @@ module.exports = (app, mockData) => {
 
             expectedStatus(res.status, 200);
             expectedContentType(res.headers['content-type'], /json/);
-            expectedPropertyAndType(res.body, '_id', 'string');
-            expectedPropertyAndType(res.body, 'username', 'string');
-            expectedPropertyAndType(res.body, 'likeCount', 'number');
-            expectedPropertyAndType(res.body, 'likes', 'Array');
+            expectedPropertyAndType(res.body, 'user', 'Object');
+            expectedNestedPropertyAndType(res.body, 'user._id', 'string');
+            expectedNestedPropertyAndType(res.body, 'user.username', 'string');
+            expectedNestedPropertyAndType(res.body, 'user.likeCount', 'number');
+            expectedNestedPropertyAndType(res.body, 'user.likes', 'Array');
         });
     });
 

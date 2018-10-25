@@ -8,7 +8,7 @@ const ProfileController = require('../controllers/profile');
 /**
  * Description - Returns information about the logged in user.
  * Authorization - required
- * Response - _id: string, username: string, likes: Array<{_id: string, username: string}>
+ * Response - message: string, user: {_id: string, username: string, likes: Array<{_id: string, username: string}>}
  */
 router.get('/me', checkAuth, asyncErrorHandler(ProfileController.profile));
 
