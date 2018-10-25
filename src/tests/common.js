@@ -97,7 +97,8 @@ describe('API TESTING', () => {
         profileTest(app, mockData);
     });
 
-    after(function() {
+    after(async () => {
+        await User.deleteMany({});
         return mongoose.disconnect(() => {
             mongoose.models = {};
             mongoose.modelSchemas = {};
