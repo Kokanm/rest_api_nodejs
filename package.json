@@ -23,7 +23,7 @@
     },
     "scripts": {
         "start": "nodemon server.js",
-        "test": "nyc mocha --watch src/tests/common.js --timeout 10000"
+        "test": "nyc mocha src/tests/common.js --timeout 10000"
     },
     "engines": {
         "node": ">=8.0.0"
