@@ -28,6 +28,22 @@ module.exports = (app, mockData) => {
     });
 
     describe('PUT /me/update-password', () => {
+        it(`expects to return 'invalid parameter types' message`, async () => {
+            const res = await request(app)
+                .put('/me/update-password')
+                .set('Authorization', `Bearer ${mockData.tokens[1]}`)
+                .set('Accept', 'application/json')
+                .send({
+                    oldPassword: 1,
+                    newPassword: 2,
+                    repeatPassword: '2raER$#cz',
+                });
+
+            expectedStatus(res.status, 400);
+            expectedContentType(res.headers['content-type'], /json/);
+            expectedPropertyAndType(res.body, 'message', 'string');
+        });
+
         it(`expects to return 'missing fields' message`, async () => {
             const res = await request(app)
                 .put('/me/update-password')

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { signupLimiter, loginLimiter } = require('../utils/limiters');
+const { signupLimiter, loginLimiter } = require('../middleware/limiters');
 const { asyncErrorHandler } = require('../middleware/async-wrapper');
 const AuthController = require('../controllers/auth');
 

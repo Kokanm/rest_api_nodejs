@@ -3,6 +3,21 @@ const { expectedStatus, expectedContentType, expectedPropertyAndType } = require
 
 module.exports = (app, mockData) => {
     describe('POST /signup', () => {
+        it(`expects to return 'invalid parameter type' message`, async () => {
+            const res = await request(app)
+                .post('/signup')
+                .set('Accept', 'application/json')
+                .send({
+                    username: 2,
+                    password: 1,
+                    repeatPassword: 'newpassword',
+                });
+
+            expectedStatus(res.status, 400);
+            expectedContentType(res.headers['content-type'], /json/);
+            expectedPropertyAndType(res.body, 'message', 'string');
+        });
+
         it(`expects to return 'fields missing' message`, async () => {
             const res = await request(app)
                 .post('/signup')
@@ -61,6 +76,20 @@ module.exports = (app, mockData) => {
     });
 
     describe('POST /login', () => {
+        it(`expects to return 'invalid parameter type' message`, async () => {
+            const res = await request(app)
+                .post('/login')
+                .set('Accept', 'application/json')
+                .send({
+                    username: 4,
+                    password: mockData.validPassword,
+                });
+
+            expectedStatus(res.status, 400);
+            expectedContentType(res.headers['content-type'], /json/);
+            expectedPropertyAndType(res.body, 'message', 'string');
+        });
+
         it(`expects to return a 'auth failed' message (because of non existing user)`, async () => {
             const res = await request(app)
                 .post('/login')

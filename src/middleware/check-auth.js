@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const userDAL = require('../DAL/user');
+const responses = require('../utils/responses');
 const config = require('../config/config.json');
 
 module.exports = async (req, res, next) => {
@@ -23,13 +24,9 @@ module.exports = async (req, res, next) => {
             };
             next();
         } else {
-            return res.status(401).json({
-                message: 'Auth failed',
-            });
+            return res.status(401).json(responses.deny('Auth failed'));
         }
-    } catch (error) {
-        return res.status(401).json({
-            message: 'Auth failed',
-        });
+    } catch (err) {
+        return res.status(401).json(responses.deny('Auth failed'));
     }
 };

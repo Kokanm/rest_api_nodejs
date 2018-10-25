@@ -4,7 +4,8 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const database = require('./src/db/database');
 
-const { generalLimiter } = require('./src/utils/limiters');
+const { generalLimiter } = require('./src/middleware/limiters');
+const responses = require('./src/utils/responses');
 const authRouter = require('./src/routes/auth');
 const profileRouter = require('./src/routes/profile');
 const userRouter = require('./src/routes/user');
@@ -39,9 +40,7 @@ app.use((req, res, next) => {
 
 app.use((error, req, res, next) => {
     res.status(error.status || 500);
-    res.json({
-        error: error.message,
-    });
+    res.json(responses.error(error.message));
 });
 
 module.exports = app;
